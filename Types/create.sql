@@ -1,0 +1,1 @@
+\i Types/fqname.sql
