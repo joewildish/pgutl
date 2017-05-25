@@ -7,6 +7,7 @@ create or replace view unique_key_constraint
   unique_constraint_catalog,
   unique_constraint_schema,
   unique_constraint_name,
+  unique_constraint_type,
   table_catalog,
   table_schema,
   table_name
@@ -15,6 +16,7 @@ as
   select constraint_catalog,
          constraint_schema,
          constraint_name,
+         constraint_type,
          table_catalog,
          table_schema,
          table_name
