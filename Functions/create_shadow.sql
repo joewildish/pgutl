@@ -5,7 +5,8 @@
 create or replace function create_shadow
 (
   source_schema text,
-  shadow_schema text default 'shadow'
+  shadow_schema text    default 'shadow',
+  include_data  boolean default false
 )
 returns void
 as $$
@@ -26,7 +27,7 @@ begin
                   select row_number() over (order by table_name) n, -- starts at 1
                          'CREATE TABLE '|| quote_ident(shadow_schema) ||'.'|| quote_ident(table_name) ||' '||
                          'AS SELECT * FROM '|| quote_ident(table_schema) ||'.'|| quote_ident(table_name) ||' '||
-                         'WHERE FALSE' as sql
+                         'WHERE '|| case when include_data then 'TRUE' else 'FALSE' end as sql
                   from   base_table
                   where  table_schema = source_schema
                   order by n

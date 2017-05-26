@@ -23,7 +23,7 @@ grant execute on function clean(boolean) to public
 \echo > Grant execute on function create_shadow to public
 \echo
 
-grant execute on function create_shadow(text, text) to public
+grant execute on function create_shadow(text, text, boolean) to public
 ;
 
 \echo
